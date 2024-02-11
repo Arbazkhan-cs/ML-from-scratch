@@ -1,0 +1,2 @@
+Minor[[:space:]]Project/*.pkl filter=lfs diff=lfs merge=lfs -text
+Minor[[:space:]]Project/*.h5 filter=lfs diff=lfs merge=lfs -text
