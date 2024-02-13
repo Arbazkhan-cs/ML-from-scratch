@@ -1,4 +1,4 @@
-# 🎓 Specialization - 3 course series
+# 🎓 Specialization in Machine Learning
 
 Dive into the world of modern machine learning with our comprehensive Specialization! Explore supervised learning (multiple linear regression, logistic regression, neural networks, and decision trees), unsupervised learning (clustering, dimensionality reduction, recommender systems), and Silicon Valley's best practices for AI and ML innovation. 🚀
 
