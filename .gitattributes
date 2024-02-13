@@ -1,5 +1,2 @@
-Minor[[:space:]]Project/*.pkl filter=lfs diff=lfs merge=lfs -text
-<<<<<<< HEAD
-Minor[[:space:]]Project/*.h5 filter=lfs diff=lfs merge=lfs -text
-=======
->>>>>>> d70c40082cb7ebee1b97bcd344fbe8ef4ec44067
+4[[:space:]]-[[:space:]]Minor[[:space:]]Project/*.pkl filter=lfs diff=lfs merge=lfs -text
+4[[:space:]]-[[:space:]]Minor[[:space:]]Project/*.h5 filter=lfs diff=lfs merge=lfs -text
