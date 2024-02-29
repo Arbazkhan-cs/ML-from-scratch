@@ -23,4 +23,4 @@ Upon completion, you'll be equipped to:
 
 • 🎮 Build a deep reinforcement learning model.
 
-Get ready to level up your machine learning skills and tackle the most challenging problems! 💪
+Get ready to level up your machine learning skills and tackle the most challenging problems With ME! 💪
