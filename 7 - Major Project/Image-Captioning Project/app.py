@@ -22,7 +22,11 @@ def load_model_and_tokenizer():
         all_captions = pickle.load(f)
     
     max_len = max(len(token.split()) for token in all_captions)
-    return model, tokenizer, max_len
+
+
+    model_vgg16 = VGG16()
+    model_vgg16 = Model(inputs=model_vgg16.inputs, outputs=model_vgg16.layers[-2].output)
+    return model, tokenizer, max_len, model_vgg16
 
     
 def idx_to_integer(integer, tokenizer):
@@ -31,22 +35,19 @@ def idx_to_integer(integer, tokenizer):
             return word
     return None
 
-def get_image_feature(img):
-    model = VGG16()
-    model = Model(inputs=model.inputs, outputs=model.layers[-2].output)
-
+def get_image_feature(img, model_vgg16):
     image = load_img(img, target_size=(224, 224))
     image = img_to_array(image)
-    image = image.reshape(1, image.shape[0], image.shape[1], image.shape[2])
-
-    preprocess_image = preprocess_input(image)
-    feature = model.predict(preprocess_image, verbose=0)
+    image = image.reshape((1, image.shape[0], image.shape[1], image.shape[2]))
+    image = preprocess_input(image)
+    feature = model_vgg16.predict(image, verbose=0)
     return feature
 
 
+
 # generating captions for the image
-def predict_captions(image, model, tokenizer, max_len):
-    image = get_image_feature(image)
+def predict_captions(image, model, tokenizer, max_len, model_vgg16):
+    image = get_image_feature(image, model_vgg16)
     in_text = "<startseq>"
     predict_text = ""
     for i in range(max_len):
@@ -69,7 +70,7 @@ def main():
     st.title("Image Captioning Application")
 
     # Load model and tokenizer
-    model, tokenizer, max_len = load_model_and_tokenizer()
+    model, tokenizer, max_len, model_vgg16 = load_model_and_tokenizer()
 
     # File uploader for image
     st.sidebar.title("Upload Image")
@@ -81,7 +82,7 @@ def main():
         st.sidebar.write("Generating captions...")
 
         # Predict captions for uploaded image
-        predicted_caption = predict_captions(uploaded_image, model, tokenizer, max_len)
+        predicted_caption = predict_captions(uploaded_image, model, tokenizer, max_len, model_vgg16)
 
         st.markdown(f"<b><p style='font-size: 30px;'>Caption:</p><b>", unsafe_allow_html=True)
 
